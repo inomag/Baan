@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">User App</string>
+    <string name="otp_api">https://spate-assam.herokuapp.com/api/signup</string>
+    <string name="register_api">https://spate-assam.herokuapp.com/api/verifyOTP</string>
 </resources>
