@@ -20,6 +20,10 @@ mongoose.connect(dbURI, {
     .then((result) => console.log('Mongodb connected...'))
     .catch((err) => console.log(err));
 
+const authRoutes = require('./routes/auth');
+
+app.use('/api', authRoutes);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}...`));
