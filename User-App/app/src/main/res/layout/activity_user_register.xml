@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:orientation="vertical"
+    tools:context=".UserRegister">
+
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_height="match_parent">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Enter Name"
+            app:startIconDrawable="@drawable/ic_user"
+            app:boxStrokeWidth="0.5dp"
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:errorTextColor="#f44336"
+            app:errorEnabled="true"
+            app:boxStrokeErrorColor="#F44336"
+            android:elevation="16dp"
+            app:shapeAppearance="@style/Rounded">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Enter Phone"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:errorEnabled="true"
+            app:counterTextColor="@color/green"
+            app:startIconDrawable="@drawable/ic_phone"
+            app:boxStrokeWidth="0.5dp"
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:errorTextColor="#f44336"
+            app:boxStrokeErrorColor="#F44336"
+            app:shapeAppearance="@style/Rounded"
+            android:elevation="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:textColor="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/locationTIL"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Location"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_location"
+                app:boxStrokeWidth="0.5dp"
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                app:errorTextColor="#f44336"
+                app:boxStrokeErrorColor="#F44336"
+                app:shapeAppearance="@style/Rounded"
+                app:helperText="Select your home address"
+                app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:helperTextTextColor="@color/green"
+                app:helperTextEnabled="true"
+                android:elevation="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/mapDialog"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/black"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="64dp"
+                android:layout_height="56dp"
+                android:text="MAP"
+                android:textAlignment="center"
+                android:textSize="10sp"
+                android:elevation="20dp"
+                android:layout_marginHorizontal="10dp"/>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/sendOtp"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_margin="60dp"
+            android:backgroundTint="@color/black"
+            android:text="SEND OTP"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:textSize="10sp"
+            app:icon = "@drawable/ic_back"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/codeTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="15dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:boxStrokeWidth="0.5dp"
+            app:boxStrokeColor="@color/black"
+            app:errorTextColor="#f44336"
+            app:boxStrokeErrorColor="#F44336"
+            app:helperText="Enter the OTP sent to your number"
+            app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:helperTextTextColor="@color/green"
+            app:helperTextEnabled="true"
+            android:elevation="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter OTP"
+                android:textAlignment="center"
+                android:textColor="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/registerUser"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_margin="60dp"
+            android:backgroundTint="@color/black"
+            android:text="REGISTER USER"/>
+    </LinearLayout>
+
+
+</LinearLayout>
