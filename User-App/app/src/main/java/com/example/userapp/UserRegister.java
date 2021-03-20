@@ -1,9 +1,20 @@
 package com.example.userapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,6 +35,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,7 +58,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserRegister extends AppCompatActivity {
+public class UserRegister extends AppCompatActivity{
+
 
     private Window window;
 
@@ -47,9 +72,6 @@ public class UserRegister extends AppCompatActivity {
     String NAME,PHONE,LOCATION,OTP;
 
     HashMap<String, String> params = new HashMap<>();
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,10 +174,12 @@ public class UserRegister extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void showMap() {
-
+        startActivity(new Intent(UserRegister.this,MapMarker.class));
     }
 
     private void verifyCode(View v) {
@@ -168,12 +192,14 @@ public class UserRegister extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
 
-//                            try {
-//                                String message = response.getString("error");
-//                                Toast.makeText(UserRegister.this, message, Toast.LENGTH_SHORT).show();
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
+                            try {
+                                String message = response.getString("error");
+                                Toast.makeText(UserRegister.this, message, Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
                         }
                     },
                     new Response.ErrorListener() {
@@ -297,4 +323,6 @@ public class UserRegister extends AppCompatActivity {
         codeTIL = findViewById(R.id.codeTIL);
 
     }
+
+
 }
