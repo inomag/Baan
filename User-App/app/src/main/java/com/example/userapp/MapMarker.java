@@ -48,7 +48,8 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
     Location temp;
     String lat, lon;
     GoogleMap mMap;
-    Marker mCurrLocationMarker;
+    String name,phone;
+
 
 
     FusedLocationProviderClient mFusedLocationClient;
@@ -61,7 +62,8 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_marker);
         markLoc = findViewById(R.id.markLoc);
-
+        name = getIntent().getStringExtra("name");
+        phone = getIntent().getStringExtra("phone");
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         assert supportMapFragment != null;
         supportMapFragment.getMapAsync(this);
@@ -159,84 +161,19 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            enableUserLocation1();
-            zoomToUserLocation1();
-            Toast.makeText(this, "Map Ready", Toast.LENGTH_SHORT).show();
-
-        } else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
-
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
-
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                if(mMap!=null){
+                    mMap.clear();
+                }
+                mMap.addMarker(new MarkerOptions().position(latLng));
+                lat = String.valueOf(latLng.latitude);
+                lon = String.valueOf(latLng.longitude);
+                Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
             }
-        }
+        });
     }
-
-    private void zoomToUserLocation1() {
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Network ISSUE", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-            boolean gps_enabled = false;
-            boolean network_enabled = false;
-
-            try {
-                gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            } catch (Exception ex) {
-            }
-            if (!gps_enabled ) {
-                new AlertDialog.Builder(getApplicationContext()).setMessage(R.string.gps_network_not_enabled)
-                        .setPositiveButton(R.string.open_location_settings, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                getApplicationContext().startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                            }
-                        });
-            } else {
-                Task<Location> locationTask = mFusedLocationClient.getLastLocation();
-                locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-//                        temp=latLng;
-                        //   Toast.makeText(getApplicationContext(),String.valueOf(userLocation.latitude),Toast.LENGTH_SHORT).show();
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
-                        mMap.addMarker(new MarkerOptions().position(latLng));
-                    }
-                });
-            }
-        }
-    }
-
-    private void enableUserLocation1() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this,"Unable to get Location",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else {
-
-            mMap.setMyLocationEnabled(true);
-        }
-
-
-    }
-
-//    private void markLocation(Location temp) {
-//        LatLng latLng = new LatLng(temp.getLatitude(), temp.getLongitude());
-//        Toast.makeText(this, "Map Marking..", Toast.LENGTH_SHORT).show();
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
-//        mMap.addMarker(new MarkerOptions().position(latLng));
-//        Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
-//    }
-
-
-
-
 }
 
 
@@ -252,15 +189,13 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
 //    GoogleApiClient mGoogleApiClient;
 //    LocationRequest mLocationRequest;
 //
-//    String name,phone;
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_map_marker);
 //
-//        name = getIntent().getStringExtra("name");
-//        phone = getIntent().getStringExtra("phone");
+
 //
 //
 //        markLoc = findViewById(R.id.markLoc);
