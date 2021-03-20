@@ -37,4 +37,9 @@ router.post('/admin/signup', admin_phone_signup);
 // @access  Private
 router.post('/admin/verifyOTP', admin_otp_verify);
 
+// @route   GET api/signout
+// @desc    Signout the user or admin
+// @access  Private(only for logged is users)
+router.get('/signout', signout);
+
 module.exports = router;
