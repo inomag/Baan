@@ -9,6 +9,7 @@ import PrivateRoute from "./authentication/protectedRoutes/PrivateRoute";
 import { NotFound } from "./404/NotFound";
 import SigninStepForm from "./authentication/signin/SigninStepForm";
 import Dashboard from "./components/UserDashboard";
+import AffectedLocations from "./components/AffectedLocations";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route exact path='/signin' component={SigninStepForm} />
           <PrivateRoute exact path='/' component={Dashboard} />
           <AdminRoute exact path='/manage' component={Home} />
+          <AdminRoute exact path='/affected-data' component={AffectedLocations} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

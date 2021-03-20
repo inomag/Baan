@@ -4,8 +4,6 @@ import GoogleMap from "../admin/GoogleMap";
 const Home = () => {
     const [floodedLocations, setFloodedLocations] = useState([]);
     const [users, setUsers] = useState([]);
-    const [latitude, setLatitude] = useState('');
-	const [longitude, setLongitude] = useState('');
 
     const fetchAllDisasters = () => {
         return fetch('http://localhost:5000/api/get/locations')
@@ -22,16 +20,6 @@ const Home = () => {
     }
 
     useEffect(() => {
-
-        if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(function (position) {
-                // console.log("Latitude is :", position.coords.latitude);
-                // console.log("Longitude is :", position.coords.longitude);
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude)
-            });
-        }
-
         fetchAllDisasters().then(data => {
             setFloodedLocations(data.flooded_locations);
         });
