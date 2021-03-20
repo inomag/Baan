@@ -4,6 +4,8 @@ export default class Login extends Component {
 
     render() {
         return (
+            <div className="auth-wrapper">
+        <div className="auth-inner">
             <form>
                 <h3>Login</h3>
 
@@ -29,6 +31,8 @@ export default class Login extends Component {
                     {/* Forgot <a href="./home.js">password?</a> */}
                 </p>
             </form>
+            </div>
+            </div>
         );
     }
 }

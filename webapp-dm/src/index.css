@@ -69,9 +69,7 @@ body, html, .App, #root, .auth-wrapper {
   margin: 0;
 }
 
-.forgot-password a {
-  color: #ff1616;
-}
+
 @media screen and (min-width: 600px) {
  .auth-inner {
   width: 30%;

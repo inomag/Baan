@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import * as serviceWorker from "./service";
+
 
 ReactDOM.render(
     <BrowserRouter>
@@ -11,5 +11,3 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById("root")
 );
-
-serviceWorker.unregister();

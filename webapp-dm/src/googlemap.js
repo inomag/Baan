@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import LocationMarker from './locationmarker';
 import LocationInfoBox from './locationmodal';
 import UserCollection from './userCollection';
+import Gallery from './Gallery';
 
 const GoogleMap = ({ floodedLocations, center, zoom, users }) => {
     const google = window.google;
@@ -42,6 +43,7 @@ const GoogleMap = ({ floodedLocations, center, zoom, users }) => {
         <Fragment>
             <h4>Users' Colection Page</h4>
             <UserCollection floodedLocations={floodedLocations} users={users} />
+            <Gallery />
 
             <div className="map">
                 <GoogleMapReact
