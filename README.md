@@ -1,5 +1,5 @@
-# Masiha
-# Flood management App - Assam
+## Masiha
+## Flood management App - Assam
 
 Quick Preview of our Landing page
 <br/>
@@ -7,12 +7,18 @@ Quick Preview of our Landing page
 
 # Getting Started with Our website
 (Steps to Follow)
-# cd website
-# npm install
-# cd client 
-# npm install 
-# cd ..
-# npm run dev
+<table>
+<tr>
+<td>
+## cd website
+## npm install
+## cd client 
+## npm install 
+## cd ..
+## npm run dev
+</td>
+</tr>
+</table>
 
 # Preview
 Home Page 
