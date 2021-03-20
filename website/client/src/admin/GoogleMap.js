@@ -44,7 +44,6 @@ const GoogleMap = ({ floodedLocations, center, zoom, users }) => {
 
             <div className="map">
                 <GoogleMapReact
-                    // AIzaSyA78trJmNiEoLm7zs-Di2j5H8LmfT8sGX4 -Google Place Api
                     bootstrapURLKeys={{ key: 'AIzaSyA7bN1ki27FuPWi-OaVnJZ1y5b7nTFhX_k' }}
                     defaultCenter={center}
                     defaultZoom={zoom}

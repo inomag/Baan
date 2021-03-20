@@ -13,9 +13,8 @@ const UserCollection = ({ users, floodedLocations }) => {
             return res.json()
         }).then(data => {
             setAffectedUsers(data.distinctUsersAffected);
-            // setSuccessMessage(data.success);
+            setSuccessMessage(data.success);
             setNotifyButton(true);
-            setSuccessMessage('Found 2 users affected!');
         })
             .catch(err => {
                 console.log(err);
