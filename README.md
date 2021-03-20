@@ -5,20 +5,21 @@ Quick Preview of our Landing page
 <br/>
 ![Flood-management-app](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/baan.png)
 
-# Getting Started with Our website
-(Steps to Follow)
 <table>
 <tr>
 <td>
-## cd website
-## npm install
-## cd client 
-## npm install 
-## cd ..
-## npm run dev
+A basic webapp built to tackle tha one of the many challenges that people face during flooods,the communication gap between the affected and non-affected ones. 
 </td>
 </tr>
 </table>
+**Getting Started with Our website** 
+
+* [**`cd website`**]
+* [**`npm install`**]
+* [**`cd client`**]
+* [**`npm install`**]
+* [**`cd ..`**]
+* [**`npm run dev`**]
 
 # Preview
 Home Page 
