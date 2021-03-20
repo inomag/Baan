@@ -1,9 +1,13 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+// Credentials for Twilio Service
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+
+// Import model
+const User = require('../models/user');
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = user => {
@@ -35,7 +39,7 @@ exports.verifyOTP = async (req, res) => {
     try {
         console.log(req.body);
         const { phone, code, name, default_loc } = req.body;
-        const data = await client.verify.services('VAc9f4c6e99c3103c020c574b42ca391a6').verificationChecks.create({
+        const data = await client.verify.services(process.env.TWILIO_SERVICE_ID).verificationChecks.create({
             to: `+91${phone}`,
             code
         });
@@ -49,7 +53,7 @@ exports.verifyOTP = async (req, res) => {
 
                 res.cookie('INUNDATION', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-                return res.status(400).json({
+                return res.status(404).json({
                     user,
                     error: 'This phone is already registered!'
                 });
@@ -79,3 +83,18 @@ exports.verifyOTP = async (req, res) => {
         return res.json({ error: 'Some error occured!' });
     }
 };
+
+exports.get_all_users = async (req, res) => {
+    const users = await User.find({
+        role: {
+            $ne: 1
+        }
+    });
+    res.json({ users });
+}
+
+exports.get_user_by_phone_no = async (req, res) => {
+    console.log(req.params);
+    const user = await User.findOne({ phone: req.params.phone });
+    res.json({ user });
+}

@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const dbURI = 'mongodb://localhost/nitr-app';
-// const dbURI = process.env.MONGODB_URI;
+// const dbURI = 'mongodb://localhost/nitr-app';
+const dbURI = process.env.MONGODB_URI;
 
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
