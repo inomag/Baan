@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DownloadManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -64,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 disasterModel.setCoordinates(jsonObject.getString("coordinates"));
+                                Toast.makeText(HomeActivity.this, jsonObject.getString("coordinates"), Toast.LENGTH_SHORT).show();
                             } catch (JSONException E) {
                                 E.printStackTrace();
                             }
@@ -77,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast.makeText(HomeActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.i("Volley Error: ",error.getMessage());
             }
         });
