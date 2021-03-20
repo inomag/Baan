@@ -11,7 +11,7 @@ router.post('/admin/set-locations', set_location);
 // @route   GET api/get-locations
 // @desc    Get all locations from the database
 // @access  Public
-router.get('/get-locations', get_locations);
+router.get('/get/locations', get_locations);
 
 // @route   GET api/compare-distance
 // @desc    Check if any user is within the flood affected locations

@@ -28,9 +28,14 @@ const Navbar = ({ history }) => {
                             {/* )} */}
 
                             {isAuthenticated() && isAuthenticated().role === 1 && (
-                                <li class="nav-item">
-                                    <Link class="nav-link active" aria-current="page" to="/manage">Manage</Link>
-                                </li>
+                                <Fragment>
+                                    <li class="nav-item">
+                                        <Link class="nav-link active" aria-current="page" to="/affected-data">Affected Data</Link>
+                                    </li>
+                                    <li class="nav-item">
+                                        <Link class="nav-link active" aria-current="page" to="/manage">Manage</Link>
+                                    </li>
+                                </Fragment>
                             )}
 
                             {!isAuthenticated() && (

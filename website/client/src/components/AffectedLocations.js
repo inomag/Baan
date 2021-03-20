@@ -46,9 +46,9 @@ const AffectedLocations = () => {
                         </ul>
                     </Fragment>
 
-                ))}g
+                ))}
                 <hr />
-
+                
                 <h3>Total affected locations: {floodedLocations.length}</h3>
                 {
                     floodedLocations.map(flood => (
