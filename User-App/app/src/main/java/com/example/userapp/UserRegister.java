@@ -81,6 +81,12 @@ public class UserRegister extends AppCompatActivity{
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.black));
         initViews();
+        LOCATION = getIntent().getStringExtra("location");
+        NAME = getIntent().getStringExtra("name");
+        PHONE = getIntent().getStringExtra("phone");
+        location.setText(LOCATION);
+        eName.setText(NAME);
+        ePhone.setText(PHONE);
         sendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,7 +185,10 @@ public class UserRegister extends AppCompatActivity{
     }
 
     private void showMap() {
-        startActivity(new Intent(UserRegister.this,MapMarker.class));
+        Intent intent = new Intent(UserRegister.this,MapMarker.class);
+        intent.putExtra("name",eName.getText().toString());
+        intent.putExtra("phone",ePhone.getText().toString());
+        startActivity(intent);
     }
 
     private void verifyCode(View v) {
@@ -321,6 +330,8 @@ public class UserRegister extends AppCompatActivity{
         phoneTIL = findViewById(R.id.phoneTIL);
         locationTIL = findViewById(R.id.locationTIL);
         codeTIL = findViewById(R.id.codeTIL);
+
+
 
     }
 
