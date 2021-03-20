@@ -3,7 +3,6 @@ package com.example.userapp;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -11,31 +10,26 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 
@@ -46,14 +40,10 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
     private static final int REQUEST_LOCATION = 1;
     LocationManager locationManager;
     Location temp;
-    String lat, lon;
+    Double lat, lon;
     GoogleMap mMap;
     String name,phone;
-
-
-
     FusedLocationProviderClient mFusedLocationClient;
-
     int PERMISSION_ID = 44;
 
 
@@ -64,13 +54,36 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
         markLoc = findViewById(R.id.markLoc);
         name = getIntent().getStringExtra("name");
         phone = getIntent().getStringExtra("phone");
+        lat = getIntent().getDoubleExtra("lat",0);
+        lon = getIntent().getDoubleExtra("lon",0);
+
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         assert supportMapFragment != null;
         supportMapFragment.getMapAsync(this);
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
+
+        markLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveLoc();
+            }
+        });
     }
+    private void saveLoc(){
+        Intent intent = new Intent(MapMarker.this,UserRegister.class);
+        intent.putExtra("name",name);
+        intent.putExtra("phone",phone);
+        intent.putExtra("lat",lat);
+        intent.putExtra("lon",lon);
+
+        startActivity(intent);
+
+
+
+    }
+
+
 
     @SuppressLint("MissingPermission")
     private void getLastLocation(){
@@ -84,8 +97,8 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
                             requestNewLocationData();
                         }else{
                             temp = location;
-                            lat = String.valueOf(location.getLatitude());
-                            lon = String.valueOf(location.getLongitude());
+                            lat = location.getLatitude();
+                            lon = location.getLongitude();
                             Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -116,8 +129,8 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
             temp = mLastLocation;
-            lat = String.valueOf(mLastLocation.getLatitude());
-            lon = String.valueOf(mLastLocation.getLongitude());
+            lat = mLastLocation.getLatitude();
+            lon = mLastLocation.getLongitude();
             Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
         }
     };
@@ -168,8 +181,8 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
                     mMap.clear();
                 }
                 mMap.addMarker(new MarkerOptions().position(latLng));
-                lat = String.valueOf(latLng.latitude);
-                lon = String.valueOf(latLng.longitude);
+                lat = latLng.latitude;
+                lon = latLng.longitude;
                 Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
             }
         });

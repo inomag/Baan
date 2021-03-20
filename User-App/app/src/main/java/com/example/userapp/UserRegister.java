@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -54,8 +56,11 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserRegister extends AppCompatActivity{
@@ -70,6 +75,9 @@ public class UserRegister extends AppCompatActivity{
     private TextInputLayout nameTIL, phoneTIL, locationTIL, codeTIL;
 
     String NAME,PHONE,LOCATION,OTP;
+    Double lat,lon;
+    Geocoder geocoder;
+    List<Address> addresses;
 
     HashMap<String, String> params = new HashMap<>();
     @Override
@@ -84,9 +92,32 @@ public class UserRegister extends AppCompatActivity{
         LOCATION = getIntent().getStringExtra("location");
         NAME = getIntent().getStringExtra("name");
         PHONE = getIntent().getStringExtra("phone");
+        lat = getIntent().getDoubleExtra("lat",-1);
+        lon = getIntent().getDoubleExtra("lon",-1);
         location.setText(LOCATION);
         eName.setText(NAME);
         ePhone.setText(PHONE);
+
+        geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            addresses = geocoder.getFromLocation(lat, lon, 1);
+            String address = addresses.get(0).getAddressLine(0);
+            String city = addresses.get(0).getLocality();
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+            String postalCode = addresses.get(0).getPostalCode();
+            String knownName = addresses.get(0).getFeatureName();
+
+            location.setText(city+", "+state+", "+country);
+
+        } catch (IOException e) {
+            location.setText("Lat: "+String.valueOf(lat)+", Lon: "+String.valueOf(lon));
+        }
+
+
+
+
+
         sendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,6 +221,8 @@ public class UserRegister extends AppCompatActivity{
         Intent intent = new Intent(UserRegister.this,MapMarker.class);
         intent.putExtra("name",eName.getText().toString());
         intent.putExtra("phone",ePhone.getText().toString());
+        intent.putExtra("lat",lat);
+        intent.putExtra("lon",lon);
         startActivity(intent);
     }
 
