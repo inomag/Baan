@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UserApp">
-        <activity android:name=".MapMarker"></activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".MapMarker" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
