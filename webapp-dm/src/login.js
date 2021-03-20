@@ -6,7 +6,7 @@ export default class Login extends Component {
         return (
             <div className="auth-wrapper">
         <div className="auth-inner">
-            <form>
+            <form action="post">
                 <h3>Login</h3>
 
                 <div className="form-group">
