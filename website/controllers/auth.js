@@ -99,6 +99,16 @@ exports.get_user_by_phone_no = async (req, res) => {
     res.json({ user });
 }
 
+exports.get_affected_user = async (req, res) => {
+    const users = await User.find({
+        role: {
+            $ne: 1
+        },
+        affected_verify: true
+    });
+    res.json({ users });
+}
+
 exports.admin_phone_signup = async (req, res) => {
     try {
         console.log(req.body);

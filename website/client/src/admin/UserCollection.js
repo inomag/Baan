@@ -44,7 +44,7 @@ const UserCollection = ({ users, floodedLocations }) => {
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button onClick={fetchAffectedUsers} className="btn btn-info m-2">
                     Check affected user
-            </button>
+                </button>
 
                 {notifyButton && (
                     <button onClick={notifyUser} className="btn btn-warning m-2 mb-4">
