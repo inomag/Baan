@@ -32,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 Toast.makeText(SplashScreen.this, "Splash Done", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SplashScreen.this,UserRegister.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(SplashScreen.this,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
             }
         },3000);

@@ -14,9 +14,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.userapp.adapter.CustomRecyclerAdapter;
 import com.example.userapp.model.DisasterModel;
+import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
     RequestQueue rq;
 
-    String disaster_url = "https://spate-assam.herokuapp.com/api/get/locations";
+    String disaster_url = "https://spate-assam.herokuapp.com/api/get/locations/?flooded_locations";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,35 +57,31 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void sendRequest() {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, disaster_url, null,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, disaster_url, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        for (int i = 0; i < response.length(); i++) {
+                    public void onResponse(JSONObject response) {
+                        try {
                             DisasterModel disasterModel = new DisasterModel();
-
-                            try {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                disasterModel.setCoordinates(jsonObject.getString("coordinates"));
-                                Toast.makeText(HomeActivity.this, jsonObject.getString("coordinates"), Toast.LENGTH_SHORT).show();
-                            } catch (JSONException E) {
-                                E.printStackTrace();
+                            JSONArray arr = response.getJSONArray("flooded_locations");
+                            for(int i=0;i<arr.length();i++){
+                                JSONObject obj = arr.getJSONObject(i);
+                                disasterModel.setCoordinates(obj.getString("coordinates"));
+                                disasters.add(disasterModel);
                             }
-
-                            disasters.add(disasterModel);
+                            mAdapter = new CustomRecyclerAdapter(HomeActivity.this, disasters);
+                            recyclerView.setAdapter(mAdapter);
+                            Toast.makeText(HomeActivity.this, String.valueOf(arr.length()), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
-                        mAdapter = new CustomRecyclerAdapter(HomeActivity.this, disasters);
-                        recyclerView.setAdapter(mAdapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(HomeActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.i("Volley Error: ",error.getMessage());
             }
         });
-
-        rq.add(jsonArrayRequest);
+        rq.add(jsonObjectRequest);
     }
 }
