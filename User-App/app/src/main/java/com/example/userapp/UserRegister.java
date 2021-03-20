@@ -37,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.userapp.UtilsService.UtilsService;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -78,6 +79,7 @@ public class UserRegister extends AppCompatActivity{
     Double lat,lon;
     Geocoder geocoder;
     List<Address> addresses;
+    UtilsService utilsService;
 
     HashMap<String, String> params = new HashMap<>();
     @Override
@@ -88,6 +90,7 @@ public class UserRegister extends AppCompatActivity{
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.black));
+        utilsService = new UtilsService();
         initViews();
         LOCATION = getIntent().getStringExtra("location");
         NAME = getIntent().getStringExtra("name");
@@ -100,46 +103,40 @@ public class UserRegister extends AppCompatActivity{
 
         geocoder = new Geocoder(this, Locale.getDefault());
         try {
-            addresses = geocoder.getFromLocation(lat, lon, 1);
-            String address = addresses.get(0).getAddressLine(0);
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName();
-
-            location.setText(city+", "+state+", "+country);
-
+            if(lat>0&&lon>0){
+                addresses = geocoder.getFromLocation(lat, lon, 1);
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                location.setText(city+", "+state+", "+country);
+            }else{
+                location.setText("Lat: "+String.valueOf(lat)+", Lon: "+String.valueOf(lon));
+            }
         } catch (IOException e) {
             location.setText("Lat: "+String.valueOf(lat)+", Lon: "+String.valueOf(lon));
         }
-
-
-
-
-
         sendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                utilsService.hideKeyboard(v,UserRegister.this);
                 sendCode(v);
             }
         });
         registerUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                utilsService.hideKeyboard(v,UserRegister.this);
                 verifyCode(v);
                 startActivity(new Intent(UserRegister.this,HomeActivity.class));
                 finish();
             }
         });
-
         mapDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showMap();
             }
         });
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,7 +145,6 @@ public class UserRegister extends AppCompatActivity{
 
             }
         });
-
         ePhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -200,23 +196,16 @@ public class UserRegister extends AppCompatActivity{
         code.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 codeTIL.setError(null);
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
-
-
     }
-
     private void showMap() {
         Intent intent = new Intent(UserRegister.this,MapMarker.class);
         intent.putExtra("name",eName.getText().toString());
@@ -289,7 +278,7 @@ public class UserRegister extends AppCompatActivity{
     private void sendCode(View v) {
         NAME = eName.getText().toString();
         PHONE = ePhone.getText().toString();
-        LOCATION = "26.245462,94.8793742";
+        LOCATION = String.valueOf(lat)+","+String.valueOf(lon);
         if(validateInfo(v)){
             params.put("name",NAME);
             params.put("phone",PHONE);
@@ -339,7 +328,7 @@ public class UserRegister extends AppCompatActivity{
             nameTIL.setError("Enter your name");
             return isValid;
         }
-        if(location.getText().toString().isEmpty()){
+        if(location.getText().toString().isEmpty()||location.getText().toString()=="Lat: -1, Lon: -1"){
             isValid =false;
             locationTIL.setError("Select your location");
             return isValid;
