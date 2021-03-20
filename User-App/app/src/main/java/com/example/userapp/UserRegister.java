@@ -1,22 +1,12 @@
 package com.example.userapp;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -38,19 +28,6 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.userapp.UtilsService.UtilsService;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -69,11 +46,11 @@ public class UserRegister extends AppCompatActivity{
 
     private Window window;
 
-    private TextInputEditText eName,ePhone,location,code;
-    private Button sendOtp, registerUser, mapDialog,back;
-    private LinearLayout layout1, layout2;
+    private TextInputEditText eName,ePhone,location,code,ephone2;
+    private Button sendOtp, registerUser, mapDialog,back, to_login,to_signup,sendOtp2;
+    private LinearLayout layout1,layout2, layout3;
 
-    private TextInputLayout nameTIL, phoneTIL, locationTIL, codeTIL;
+    private TextInputLayout nameTIL, phoneTIL, locationTIL, codeTIL,phoneTIL2;
 
     String NAME,PHONE,LOCATION,OTP;
     Double lat,lon;
@@ -140,7 +117,7 @@ public class UserRegister extends AppCompatActivity{
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                layout2.setVisibility(View.GONE);
+                layout3.setVisibility(View.GONE);
                 layout1.setVisibility(View.VISIBLE);
 
             }
@@ -313,7 +290,7 @@ public class UserRegister extends AppCompatActivity{
             requestQueue.add(jsonObjectRequest);
             Toast.makeText(this, "OTP Request Sent...", Toast.LENGTH_SHORT).show();
             layout1.setVisibility(View.GONE);
-            layout2.setVisibility(View.VISIBLE);
+            layout3.setVisibility(View.VISIBLE);
         }
     }
     private boolean validateInfo(View v) {
@@ -348,7 +325,7 @@ public class UserRegister extends AppCompatActivity{
         back = findViewById(R.id.back);
 
         layout1 = findViewById(R.id.layout1);
-        layout2 = findViewById(R.id.layout2);
+        layout3 = findViewById(R.id.layout3);
 
         nameTIL = findViewById(R.id.nameTIL);
         phoneTIL = findViewById(R.id.phoneTIL);
