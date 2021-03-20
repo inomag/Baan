@@ -3,7 +3,8 @@
 <table>
 <tr>
 <td>
-A basic webapp built to tackle tha one of the many challenges that people face during flooods,the communication gap between the affected and non-affected ones. 
+A basic webapp built to tackle one of the many challenges that people face during flooods,the communication gap between the affected and non-affected ones. 
+Its a web-app built to bridge this gap .
 </td>
 </tr>
 </table>
