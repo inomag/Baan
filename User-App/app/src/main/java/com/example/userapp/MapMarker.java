@@ -156,7 +156,7 @@ public class MapMarker extends AppCompatActivity implements GoogleMap.OnMapLongC
 
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
         Toast.makeText(this, latLng.toString(), Toast.LENGTH_SHORT).show();
 
         //stop location updates
