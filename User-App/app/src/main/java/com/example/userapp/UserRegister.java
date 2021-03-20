@@ -97,6 +97,8 @@ public class UserRegister extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 verifyCode(v);
+                startActivity(new Intent(UserRegister.this,HomeActivity.class));
+                finish();
             }
         });
 
