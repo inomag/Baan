@@ -1,6 +1,10 @@
 # Masiha
 Flood management Assam
 
+Quick Preview of our Landing page
+<br/>
+![Flood-management-app](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/baan.png)
+
 # Getting Started with Our website
 
 # cd website
