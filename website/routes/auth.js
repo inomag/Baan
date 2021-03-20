@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { phone_signup, verifyOTP, get_all_users, get_user_by_phone_no, admin_phone_signup, admin_otp_verify } = require('../controllers/auth');
+const { phone_signup, verifyOTP, get_all_users, get_user_by_phone_no, admin_phone_signup, admin_otp_verify, signout } = require('../controllers/auth');
 
 // @route   POST api/signup
 // @desc    Send OTP to the user's phone number

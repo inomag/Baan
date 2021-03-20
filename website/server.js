@@ -21,8 +21,10 @@ mongoose.connect(dbURI, {
     .catch((err) => console.log(err));
 
 const authRoutes = require('./routes/auth');
+const disasterRoutes = require('./routes/disaster');
 
 app.use('/api', authRoutes);
+app.use('/api', disasterRoutes);
 
 const PORT = process.env.PORT || 5000;
 

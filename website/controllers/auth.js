@@ -166,3 +166,8 @@ exports.admin_otp_verify = async (req, res) => {
         return res.json({ error: 'Some error occured!' });
     }
 };
+
+exports.signout = (req, res) => {
+    res.clearCookie('t');
+    return res.json({ success: 'Signout success' });
+};
