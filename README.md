@@ -1,10 +1,6 @@
 ## Masiha
 ## Flood management Web-App
 
-Quick Preview of our Landing page
-<br/>
-![Flood-management-app](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/baan.png)
-
 <table>
 <tr>
 <td>
@@ -12,6 +8,12 @@ A basic webapp built to tackle tha one of the many challenges that people face d
 </td>
 </tr>
 </table>
+
+Quick Preview of our Landing page
+<br/>
+
+![Flood-management-app](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/baan.png)
+
 
 **[Getting Started with Our website]** 
 
