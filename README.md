@@ -6,20 +6,13 @@ Quick Preview of our Landing page
 ![Flood-management-app](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/baan.png)
 
 # Getting Started with Our website
-
+(Steps to Follow)
 # cd website
-Go to the website folder inside main app
-
 # npm install
-Install npm dependencies
 # cd client 
-change the directory to client app
 # npm install 
-Again install npm dependencies
 # cd ..
-Change directory
 # npm run dev
-Run the server
 
 # Preview
 Home Page 
