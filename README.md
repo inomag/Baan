@@ -28,5 +28,8 @@ Affected Data
 ![Affected Data](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023130.png)
 
 <br/>
+Affected User on Maps
+
+![Affected User on Google Maps](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023209.png)
 
 
