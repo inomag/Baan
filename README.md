@@ -32,9 +32,9 @@ Home Page
 ![Home](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023004.png)
 
 <br/>
-SignUp page
+SignIn page
 
-![SignUp page](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023513.png)
+![SignIn page](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023513.png)
 
 <br/>
 
