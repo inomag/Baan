@@ -55,6 +55,8 @@ Affected User on Maps
 <br/>
 
 Awareness Message recieved by users
+
+
 ![Awareness Message](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/IMG-20210321-WA0014%20(2).jpg)
 
 <br />
