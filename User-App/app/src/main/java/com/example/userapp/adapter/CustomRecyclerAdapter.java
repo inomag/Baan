@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +37,15 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull CustomRecyclerAdapter.ViewHolder holder, int position) {
         holder.itemView.setTag(disasters.get(position));
-
         DisasterModel model = disasters.get(position);
-
         holder.disasterLoc.setText(model.getCoordinates());
+        holder.info.setText(model.getInfo());
+        if(model.getLevel()==1)
+            holder.img.setImageResource(R.drawable.ic_warn);
+        else if(model.getLevel()==2)
+            holder.img.setImageResource(R.drawable.ic_warn2);
+        else if(model.getLevel()==3)
+            holder.img.setImageResource(R.drawable.ic_warn3);
     }
 
     @Override
@@ -49,11 +55,14 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView disasterLoc;
-
+        public TextView info;
+        public ImageView img;
         public ViewHolder(View itemview){
             super(itemview);
 
             disasterLoc = itemview.findViewById(R.id.disasterLoc);
+            info = itemview.findViewById(R.id.info);
+            img = itemview.findViewById(R.id.ic_flood);
 
             itemview.setOnClickListener(new View.OnClickListener() {
                 @Override

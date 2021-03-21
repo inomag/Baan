@@ -14,7 +14,7 @@ public class SplashScreen extends AppCompatActivity {
     private TextView intro;
     private CharSequence charSequence;
     private int index;
-    long delay = 50;
+    long delay = 100;
     private Handler handler = new Handler();
 
 
@@ -26,13 +26,12 @@ public class SplashScreen extends AppCompatActivity {
 
         intro = findViewById(R.id.intro);
 
-        animateText("RESCUE WITH LOVE AND PEACE SHALL FOLLOW ");
+        animateText("FLOOD MANAGEMENT APP ");
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(SplashScreen.this, "Splash Done", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SplashScreen.this,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(SplashScreen.this,UserRegister.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
             }
         },3000);
