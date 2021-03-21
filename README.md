@@ -40,7 +40,7 @@ SignIn page
 <br/>
 
 OTP Verification code
-!https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Screenshot_20210321-085436_Messages%20(2).jpg
+![OTP received by user](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Screenshot_20210321-085436_Messages%20(2).jpg)
 
 <br/>
 Affected Data 
