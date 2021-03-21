@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="16dp"
+    android:layout_margin="16dp"
     app:elevation="16dp"
     >
 
