@@ -1,0 +1,35 @@
+{
+    "name": "Masiha",
+    "version": "1.0.0",
+    "description": "Flood management Assam",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "server": "nodemon server.js",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Samudranil-silenthero/Masiha.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Samudranil-silenthero/Masiha/issues"
+    },
+    "homepage": "https://github.com/Samudranil-silenthero/Masiha#readme",
+    "dependencies": {
+        "distance-matrix-api": "^1.0.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "mongoose": "^5.12.1",
+        "twilio": "^3.58.0"
+    },
+    "devDependencies": {
+        "concurrently": "^6.0.0",
+        "nodemon": "^2.0.7"
+    }
+}
