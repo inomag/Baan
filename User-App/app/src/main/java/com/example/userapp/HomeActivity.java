@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DownloadManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,8 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -67,6 +71,8 @@ public class HomeActivity extends AppCompatActivity {
                             for(int i=0;i<arr.length();i++){
                                 JSONObject obj = arr.getJSONObject(i);
                                 disasterModel.setCoordinates(obj.getString("coordinates"));
+                                disasterModel.setInfo(getAddress(obj.getString("coordinates")));
+                                disasterModel.setLevel(obj.getInt("level"));
                                 disasters.add(disasterModel);
                             }
                             mAdapter = new CustomRecyclerAdapter(HomeActivity.this, disasters);
@@ -83,5 +89,29 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         rq.add(jsonObjectRequest);
+    }
+
+    private String getAddress(String coordinates) {
+        String[] temp = coordinates.split(",");
+        Double tempLat = Double.parseDouble(temp[0]);
+        Double tempLon = Double.parseDouble(temp[1]);
+
+        Geocoder geocoder;
+        List<Address> addresses;
+
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+
+        try {
+            addresses = geocoder.getFromLocation(tempLat, tempLon, 1);
+            String city = addresses.get(0).getLocality();
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+            return city+", "+state+", "+country;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            return "No Data Available";
     }
 }
