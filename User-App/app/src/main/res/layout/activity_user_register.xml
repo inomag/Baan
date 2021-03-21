@@ -16,6 +16,19 @@
         android:orientation="vertical"
         android:visibility="visible"
         android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/to_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textSize="10sp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
+            style="@style/Widget.MaterialComponents.Button"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameTIL"
             android:layout_width="match_parent"
@@ -115,14 +128,82 @@
         <Button
             android:id="@+id/sendOtp"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_margin="60dp"
+            android:layout_height="56dp"
+            android:layout_margin="72dp"
             android:backgroundTint="@color/black"
             android:text="SEND OTP"/>
     </LinearLayout>
 
+
+
     <LinearLayout
         android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/to_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIGNUP"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone2TIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="15dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:boxStrokeWidth="0.5dp"
+            app:boxStrokeColor="@color/black"
+            app:errorTextColor="#f44336"
+            app:boxStrokeErrorColor="#F44336"
+            app:helperText="Enter your phone number"
+            app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:helperTextTextColor="@color/green"
+            app:helperTextEnabled="true"
+            app:counterMaxLength="10"
+            app:counterTextColor="@color/green"
+            app:counterEnabled="true"
+            android:elevation="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ePhone2"
+                android:inputType="number"
+                android:ems="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Phone"
+                android:textAlignment="center"
+                android:textColor="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/sendOtp2"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_margin="60dp"
+            android:backgroundTint="@color/black"
+            android:text="Verify User"/>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/layout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
