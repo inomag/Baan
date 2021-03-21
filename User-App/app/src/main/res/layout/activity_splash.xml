@@ -16,7 +16,7 @@
         android:lineHeight="5dp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="36sp"
         android:textStyle="bold|italic"
         app:fontFamily="@font/bebas_neue_regular"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

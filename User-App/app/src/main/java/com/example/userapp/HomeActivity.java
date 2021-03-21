@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                             }
                             mAdapter = new CustomRecyclerAdapter(HomeActivity.this, disasters);
                             recyclerView.setAdapter(mAdapter);
-                            Toast.makeText(HomeActivity.this, String.valueOf(arr.length()), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(HomeActivity.this, String.valueOf(arr.length()), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

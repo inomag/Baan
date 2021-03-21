@@ -99,7 +99,7 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
                             temp = location;
                             lat = location.getLatitude();
                             lon = location.getLongitude();
-                            Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -131,7 +131,7 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
             temp = mLastLocation;
             lat = mLastLocation.getLatitude();
             lon = mLastLocation.getLongitude();
-            Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -183,7 +183,7 @@ public class MapMarker extends AppCompatActivity implements OnMapReadyCallback {
                 mMap.addMarker(new MarkerOptions().position(latLng));
                 lat = latLng.latitude;
                 lon = latLng.longitude;
-                Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MapMarker.this, lat+","+lon, Toast.LENGTH_SHORT).show();
             }
         });
     }
