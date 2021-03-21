@@ -17,6 +17,7 @@ Quick Preview of our Landing page
 
 **[Getting Started with Our website]** 
 
+* [**`git clone https://github.com/Samudranil-silenthero/Masiha.git`**]
 * [**`cd website`**]
 * [**`npm install`**]
 * [**`cd client`**]
