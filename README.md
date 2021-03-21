@@ -40,6 +40,17 @@ Affected User on Maps
 ![Affected User on Google Maps](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023209.png)
 
 <br/>
+Signup page
+
+![Affected User on Google Maps](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023209.png)
+
+<br/>
+Signin page
+
+![Signin page](https://github.com/Samudranil-silenthero/Masiha/blob/main/website/website-snapshots/Annotation%202021-03-21%20023513.png)
+
+<br/>
+
 
 # Android App
 
